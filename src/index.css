@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --color-bg: #08080B;
+    --color-section: #100A0F;
+    --color-burgundy: #5A0B28;
+    --color-burgundy-dark: #300615;
+    --color-primary-accent: #FF2F78;
+    --color-bright-accent: #FF4D8D;
+    --color-soft-pink: #FF8FB5;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #B8B0B6;
+    --color-text-muted: #777078;
+    --color-border: rgba(255, 255, 255, 0.10);
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Glassmorphism containers with subtle burgundy tint */
+.glass-burgundy {
+  background: rgba(16, 10, 15, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.glass-burgundy-card {
+  background: linear-gradient(135deg, rgba(48, 6, 21, 0.45) 0%, rgba(16, 10, 15, 0.85) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-burgundy-card:hover {
+  border-color: rgba(255, 47, 120, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(255, 47, 120, 0.22);
+}
+
+/* Glow highlights */
+.glow-pink-radial {
+  background: radial-gradient(circle at center, rgba(255, 47, 120, 0.18) 0%, rgba(90, 11, 40, 0.10) 45%, transparent 70%);
+}
+
+.glow-burgundy-radial {
+  background: radial-gradient(ellipse at top, rgba(90, 11, 40, 0.25) 0%, rgba(48, 6, 21, 0.15) 50%, transparent 80%);
+}
+
+/* Nav glow */
+.nav-active-glow {
+  box-shadow: 0 0 16px -2px rgba(255, 47, 120, 0.6);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #08080B;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF2F78;
+}
+
+/* Subtle floating animations for badges */
+@keyframes float-gentle-1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes float-gentle-2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(4px); }
+}
+
+.animate-float-1 {
+  animation: float-gentle-1 5s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-gentle-2 6s ease-in-out infinite 0.7s;
+}
+
+/* Very slow background ambient drift */
+@keyframes gradient-drift-slow {
+  0%, 100% {
+    transform: translate(-50%, 0%) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate(-50%, 3%) scale(1.05);
+    opacity: 1;
+  }
+}
+
+.animate-gradient-drift {
+  animation: gradient-drift-slow 16s ease-in-out infinite;
+}
+
+/* Page load fade in & upward motion */
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: page-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Progressive scroll reveal styling */
+.reveal-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
